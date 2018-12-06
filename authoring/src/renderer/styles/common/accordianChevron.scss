@@ -1,0 +1,14 @@
+@import "../colors";
+
+.accordian-chevron  {
+  width: 6px;
+  height: 10px;
+  transition: transform 100ms;
+  margin-right: 8px;
+  margin-left: 2px;
+  fill: $secondary-text;
+}
+
+.accordian-chevron.active {
+  transform: rotate(90deg);
+}

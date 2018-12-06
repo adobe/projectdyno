@@ -1,0 +1,11 @@
+@import "../colors.scss";
+
+.textInput {
+  font-size: 13px !important;
+  font-weight: lighter !important;
+  color: $secondary-text !important;
+}
+
+.textInput.quiet {
+  border: none;
+}

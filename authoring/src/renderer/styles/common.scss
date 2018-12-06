@@ -1,0 +1,30 @@
+@import "colors";
+
+$border-width: 2px;
+$light-border-width: 2px;
+$tool-bar-height: 56px;
+$animation-time: 300ms;
+
+%tool-bar {
+  display: flex;
+  align-items: center;
+  height: $tool-bar-height;
+  padding: 0px 16px;
+  border-bottom: $border-width solid $app-background;
+}
+
+%list-item {
+  padding: 16px;
+  display: flex;
+  // border-bottom: $light-border-width solid $app-background;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-expand {
+  flex: 1 0 auto;
+}

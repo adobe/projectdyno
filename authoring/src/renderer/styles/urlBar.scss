@@ -1,0 +1,11 @@
+@import "colors";
+@import "common";
+
+.url-bar {
+  @extend %tool-bar;
+}
+
+.url-input {
+  margin: 0px 8px !important;
+  flex: 1 0 auto;
+}

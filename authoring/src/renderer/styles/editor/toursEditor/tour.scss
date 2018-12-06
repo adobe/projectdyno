@@ -1,0 +1,19 @@
+@import "../../common";
+
+.tour {
+  @extend %list-item;
+  background: white;
+  border-bottom: 2px solid $app-background;
+
+  .title {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.tour-modal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}

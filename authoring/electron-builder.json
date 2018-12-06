@@ -1,0 +1,8 @@
+{
+  "appId": "com.adobe.dyno",
+  "files": ["packaged"],
+  "directories": {
+    "output": "./dist",
+    "buildResources": "./build"
+  }
+}

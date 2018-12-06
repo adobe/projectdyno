@@ -1,0 +1,16 @@
+.tool-tip-container {
+  width: 0px;
+  height: 18px;
+  overflow: visible;
+  display: block;
+  position: relative;
+}
+
+.tool-tip {
+  background: #767676;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  position: absolute;
+  display: block;
+}

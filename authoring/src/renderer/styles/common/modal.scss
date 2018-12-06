@@ -1,0 +1,104 @@
+@import "../colors.scss";
+
+$modal-animation-time: 100ms;
+$animation-offset: 200px;
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: translateY($animation-offset);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-out {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY($animation-offset);
+    opacity: 0;
+  }
+}
+
+#modal-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#modal-container.entering {
+  animation: fade-in $modal-animation-time ease-in;
+}
+
+#modal-container.exiting {
+  animation: fade-out $modal-animation-time ease-in;
+  opacity: 0;
+}
+
+.modal {
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  color: $secondary-text;
+  padding: 36px;
+  margin-top: 138px;
+  font-size: 12px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $app-background;
+  }
+
+  .input {
+    margin: 8px 0px 0px 0px;
+    width: 100%;
+  }
+
+  .button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 48px;
+  }
+}
+
+.modal.entering {
+  animation: pop-in $modal-animation-time ease-in;
+}
+
+.modal.exiting {
+  animation: pop-out $modal-animation-time ease-in;
+  opacity: 0;
+}

@@ -1,0 +1,41 @@
+{
+  "name": "tour_guide",
+  "version": "1.0.0-alpha.2",
+  "description": "Phase 1 of checkmarks project",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --mode development --open",
+    "postinstall": "./scripts/postInstall.js",
+    "test": "test",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "build": "./node_modules/.bin/webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.corp.adobe.com:OMEGA/tour_guide.git"
+  },
+  "author": "Grant Heath",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "boxen": "^1.3.0",
+    "chalk": "^2.4.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "jest": "^22.4.3",
+    "jsdoc-to-markdown": "^4.0.1",
+    "svg-inline-loader": "^0.8.0",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.0.0"
+  },
+  "dependencies": {
+    "mithril": "^1.1.6",
+    "query-string": "^6.0.0",
+    "redux": "^3.7.2",
+    "smoothscroll-polyfill": "^0.4.3"
+  }
+}

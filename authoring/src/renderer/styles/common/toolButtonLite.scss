@@ -1,0 +1,37 @@
+@import '../common.scss';
+@import '../colors.scss';
+
+button.tool-button-lite {
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+  padding: 0px;
+  margin-right: 10px;
+
+  svg {
+    fill: currentColor;
+    transition: fill $animation-time;
+    opacity: 0.6;
+  }
+}
+
+button.tool-button-lite.disabled {
+  pointer-events: none;
+  svg {
+    fill: $disabled-grey;
+    opacity: 0.6;
+  }
+}
+
+button.tool-button-lite.active {
+  svg {
+    opacity: 1;
+  }
+}
+
+button.tool-button-lite:hover {
+  svg {
+    opacity: 1;
+  }
+}

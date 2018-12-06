@@ -1,0 +1,43 @@
+<html>
+
+<head>
+	<title>Test Page 1</title>
+	<script type="text/javascript" src="../src/app.js"></script>
+	<style>
+		body, html {
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+			background: peachpuff;
+		}
+
+		.weirdButton {
+			position: absolute;
+			left: 498px;
+			top: 798px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id='cm-1'>Test Header</h1>
+	<button id='cm-2'>Test Button</button>
+	<input id='cm-3' type='text' />
+	<button>Test Button 1</button>
+	<button>Test Button 2</button>
+	<button>Test Button 3</button>
+	<button>Test Button 4</button>
+	<button id='cm-4'>Test Button 5 - This button is targeted</button>
+	<button id='cm-5' class='weirdButton'>Some button</button>
+	<svg width='200' height='200'>
+		<defs>
+			<mask id='testMask'>
+				<rect style='width: 100%; height: 100%; fill: white;' />
+				<rect style='width: 20px; height: 20px; x: 60px; y: 35px; fill: black;' />
+			</mask>
+		</defs>
+		<rect style='width: 200px; height: 200px; fill: orange;' mask='url(#testMask)' />
+	</svg>
+</body>
+
+</html>

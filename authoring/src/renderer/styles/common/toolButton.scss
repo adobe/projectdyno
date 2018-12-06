@@ -1,0 +1,33 @@
+@import '../common.scss';
+@import '../colors.scss';
+
+button.tool-button {
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
+
+  svg {
+    fill: currentColor;
+    transition: fill $animation-time;
+  }
+}
+
+button.tool-button.disabled {
+  pointer-events: none;
+  svg {
+    fill: $disabled-grey;
+  }
+}
+
+button.tool-button.active {
+  svg {
+    fill: $action-blue;
+  }
+}
+
+button.tool-button:hover {
+  svg {
+    fill: $action-blue;
+  }
+}
