@@ -1,0 +1,50 @@
+@import "colors";
+
+:root {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  background: $app-background;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  color: #707070;
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.browser {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+webview {
+  flex: 1 0 auto;
+}
+
+.flex-expand {
+  flex: 1 0 auto;
+}

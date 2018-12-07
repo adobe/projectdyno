@@ -1,0 +1,129 @@
+@import "../../common";
+@import "../../colors";
+
+.coachMark {
+  display: flex;
+  flex-direction: column;
+  color: $secondary-text;
+  transition: background-color $animation-time;
+  border-bottom: 2px solid $app-background;
+
+  .titlebar {
+    @extend %list-item;
+    display: flex;
+    align-items: center;
+    flex: 0 0 18px;
+    padding: 16px 16px 16px 6px;
+    cursor: pointer;
+  }
+
+  .title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    flex: 1 1 auto;
+  }
+
+  .title * {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .attributes-container {
+    color: $secondary-text;
+    display: flex;
+    // flex: 1 1 0px;
+    flex-direction: column;
+    transition: flex $animation-time;
+    overflow: hidden;
+  }
+
+  .attributes-editor {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 0px 24px;
+
+    .attributes-group-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 1px solid $app-background;
+      padding-right: 16px;
+
+      button.title {
+        font-size: 10px;
+        font-weight: 100;
+        text-transform: uppercase;
+        text-align: start;
+        margin: 16px 16px 16px 0px;
+        padding: 0px;
+        height: 10px;
+        border: none;
+        background: none;
+        outline: none;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .attributes-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+
+        .child-container {
+          flex: 0 0 auto;
+        }
+      }
+
+      .has-mounted {
+        transition: flex $animation-time;
+      }
+
+      .row {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        font-size: 13px;
+        flex: 0 0 18px;
+        margin-bottom: 16px;
+
+        input {
+          height: 26px;
+        }
+      }
+
+      .label-margin {
+        margin-bottom: 6px;
+      }
+
+      .row > input {
+        width: unset;
+        flex: 1 0 auto;
+      }
+
+      .label-left {
+        flex: 0 0 104px;
+      }
+
+      .label-right {
+        flex: 1 0 auto;
+        text-align: right;
+      }
+    }
+
+    .attributes-group-container:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+
+.coachMark.active {
+  background-color: white;
+
+  .titlebar {
+    border-bottom: 1px solid $app-background;
+  }
+}

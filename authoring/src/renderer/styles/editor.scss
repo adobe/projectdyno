@@ -1,0 +1,110 @@
+@import "colors";
+@import "common";
+
+@keyframes in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes out-right {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes out-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.editor {
+  flex: 0 0 360px;
+  background: $panel-background;
+  height: 100%;
+  border-right: $border-width solid $app-background;
+  overflow: hidden;
+  display: block;
+  transform: translateX(0%);
+  position: relative;
+
+  .wrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    .header {
+      @extend %tool-bar;
+      flex: 0 0 auto;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      .title {
+        flex: 1 1 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .list {
+      height: 100%;
+      overflow: scroll;
+    }
+  }
+
+  .loading {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .entering-left {
+    display: block;
+    transform: translateX(0%);
+    animation: in-left 300ms;
+  }
+
+  .entering-right {
+    display: block;
+    transform: translateX(0%);
+    animation: in-right 300ms;
+  }
+
+  .entered {
+    display: block;
+  }
+
+  .exiting-left {
+    display: block;
+    transform: translateX(-100%);
+    animation: out-left 300ms;
+  }
+
+  .exiting-right {
+    display: block;
+    transform: translateX(100%);
+    animation: out-right 300ms;
+  }
+}

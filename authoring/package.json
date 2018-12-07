@@ -1,0 +1,93 @@
+{
+  "name": "project-dyno",
+  "productName": "Project Dyno",
+  "author": {
+    "name": "Grant Heath",
+    "email": "gheath@adobe.com",
+    "url": "http://www.adobe.com"
+  },
+  "main": "./packaged/index.js",
+  "description": "A tool for authoring guided product tours.",
+  "version": "0.5.1",
+  "private": true,
+  "scripts": {
+    "build": "./scripts/build.js",
+    "start": "./scripts/start.js",
+    "integrations": "jest ./integrations/ --detectOpenHandles --runInBand"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.4",
+    "@types/draft-js": "^0.10.23",
+    "@types/react": "^16.3.17",
+    "@types/react-dom": "^16.0.6",
+    "@types/react-redux": "^6.0.2",
+    "@types/react-transition-group": "^2.0.11",
+    "adm-zip": "^0.4.11",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "css-selector-generator": "^1.0.2",
+    "draft-js": "^0.10.5",
+    "draft-js-export-html": "^1.2.0",
+    "draftjs-utils": "^0.9.4",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-updater": "^3.0.3",
+    "fs-extra": "^6.0.1",
+    "jszip": "^3.1.5",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-transition-group": "^2.4.0",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "source-map-support": "^0.5.5",
+    "spectron": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "asar": "^0.14.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "chalk": "^2.4.1",
+    "css-loader": "^1.0.0",
+    "electron": "^2.0.5",
+    "electron-builder": "^20.22.0",
+    "electron-connect": "^0.6.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "figlet": "^1.2.0",
+    "jest": "^23.5.0",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.9.0",
+    "node-watch": "^0.5.8",
+    "ora": "^3.0.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.10.0",
+    "tslint-config-airbnb": "^5.9.2",
+    "typescript": "^2.9.1",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "resolutions": {
+    "webpack-sources": "1.1.0"
+  },
+  "build": {
+    "appId": "com.adobe.tourguide",
+    "protocols": {
+      "name": "tourguide",
+      "schemes": [
+        "tourguide"
+      ]
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://tourguide.blob.core.windows.net/demo/deploy-test/"
+      }
+    ]
+  }
+}

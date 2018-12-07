@@ -1,0 +1,25 @@
+@import "colors";
+@import "common";
+
+.top-bar {
+  flex: 0 0 36px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  -webkit-app-region: drag;
+  border-bottom: $border-width solid $app-background;
+
+  button {
+    margin: 0px 8px 0px 0px;
+    font-size: 13px;
+
+    svg {
+      margin: 0px 8px 0px 0px;
+    }
+  }
+}
+
+.top-bar > * {
+  -webkit-app-region: no-drag;
+}

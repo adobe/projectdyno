@@ -1,0 +1,9 @@
+.DS_Store
+dist/
+node_modules/
+coverage/
+thumbs.db
+yarn-error.log
+packaged/
+code_signing_key/
+jar/
