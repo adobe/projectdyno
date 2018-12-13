@@ -1,72 +1,60 @@
 # Introduction
 
-Tour Guide is a javaScript framework for creating in product guides and tutorials for web applications.  This is accomplished by creating "coach marks", or UI overlays that give the user detailed information about a specific UI element.  Tour Guide navigates the user through a series of coach marks, or a tour, in an effort to educate the user about a given feature or workflow.  It is hoped that this will help increase user adoption of new products and new product features.
+The Project Dyno Client is responsible for managing coach marks and tours on a web page or web app.  It is designed to be lightweight and highly configurable.  Additionally, there are a variety of options for adding Project Dyno to your project.
 
-# Deploying Tour Guide
+# Example Project
 
-There are currently two recommened strategies for deploying Tour Guide to your application.  The first is through the DTM.  The second is by inserting the neccessary script tags into your application's HTML.
+This project contains a demo page with a working Project Dyno tour.  To view this demo, open [/client/example/index.html](/client/example/index.html) in a browser.  It is a useful reference for how to use Project Dyno.
 
-## Through the DTM
+# Adding The Project Dyno Client to Your Project
 
-If your application supports the DTM, you can use the DTM to deploy Tour Guide to your applicatoin.  This is by far the preffered deployment method.  Deploying through the DTM will greatly simplify the process of updating and managing tours.  For more information on how to deploy Tour Guide through the DTM please contact Kevin Smith at kevsmith@adobe.com or Grant Heath at gheath@adobe.com.
+First, add the project-dyno.js script to your project.  This file is located in this repositary at /client/dist/project-dyno.js.  Deploy this file to the server your project will be using.  Once this is done, add the following script tag to the head of your project's HTML.
 
-## Through Target as A/B test.
-
-1.  Insert the following script tag into the head of your application's HTML header:
+``` html
+<script type="text/javascript" src="path/to/project-dyno.js"></script>
 ```
-<script type="text/javascript" src="[path to where tour-guide.js is hosted goes here]"></script>
+> Note: In the future, the project-dyno.js file will be hosted on a publicly available CDN.  This will simplify the process of adding Project Dyno to a project.  This documentation will be updated once this has been done.
+
+> Note: There are plans to publish Project Dyno as an npm module.  This will make adding Project Dyno to modern web apps much easier.  This documentation will be updated once this has been done.
+
+# Running a Tour
+
+Once it has been loaded, project-dyno.js will add the `TourGuide` class to the window/global namespace.  The `TourGuide` class is used to create and run tours.  The following code runs a simple example tour:
+
+``` javascript
+// Defines a tour configuration object.
+// Tour configuration will be discussed in depth in the "Creating and Configuring a Tour" section of this document.
+const tourConfig = {
+  infoBoxIsVisible: true,
+  currentCoachMarkIndex: 0,
+  currentTourIndex: 0,
+  tours: [
+    {
+      title: "Example Tour",
+      coachMarks: [
+        {
+          description: "Example Coach Mark that will hightlight the first H1 element.",
+          targetSelector: "h1",
+          anchorPostition: "bottom",
+          align: "center",
+        }
+      ]
+    }
+  ]
+}
+
+// Creates a new instance of the TourGuide class.
+const tourRunner = new TourGuide(tourConfig)
 ```
-2.  Setup experience A.  Make sure experience A executes the following JavaScript:
-```
-window.tourGuide = new window.TourGuide(
-  // tour guide configuration for experience A goes here
-)
-```
-3.  Setup experience B.  Make sure experience B executes the following JavaScript:
-```
-window.tourGuide = new window.TourGuide(
-  // tour guide configuration for experience B goes here
-)
-```
 
-## Script Tags
+# Creating and Configuring a Tour
 
-If your application doesn't support the DTM you can still use Tour Guide on your site.  Take the following steps:
-
-1.  Insert the following script tag into the head of your application's HTML header:
-```
-<script type="text/javascript" src="[path to where tour-guide.js is hosted goes here]"></script>
-```
-2. The Tour Guide library creates a global reference to the TourGuide class.  Create an instance of the TourGuide class by adding the following script tag to the body of your applications's HTML:
-```
-<script>
-    window.tourGuide = new window.TourGuide(
-        // tour guide configuration goes here
-    )
-</script>
-```
-### Tour Guide Configuration Object
-
-The tour guide configuration is an object literal that contains all the information Tour Guide needs to run a tour.  For more information about the Tour Guide configuration, vist the <a href='#configuring-tour-guide'>Configuring Tour Guide</a> section of the documentation.
-
-### Variations on Step Three
-
-Step three does not need to be followed exactly.  There might be a situation where Tour Guide needs to be instantiated through another script.  As an example, a developer might want to load the Tour Guide configuration from a JSON file.
-
-When instantiating a new instance of the TourGuide object it should be assigned to `window.tourGuide`.  This is because the authoring tool looks for instances of TourGuide on `window.tourGuide`.
-
-## Why not NPM?
-
-There hasn't been any effort into making Tour Guide available as an NPM module.  This is because our focus has been spent on making Tour Guide available through the DTM.  If you would like to see Tour Guide available as an NPM module please contact Grant Heath at gheath@adobe.com.
-
-# Configuring Tour Guide
-
-Tour Guide needs to be provided with configuration to define the tours and coachmarks of a given page.  If you are deploying through the DTM, this should be provided as a JSON file.  If your are not deploying through the DTM this configuration will be passed to a new instance of the TourGuide class as an object literal.
+When a new `TourGuide` instance is created, it is passed a tour configuration object as a parameter.  The tour configuration defines
 
 ## Configuration Schema
 
-The Tour Guide configuration conforms to the following schema:
-```
+The Project Dyno configuration object conforms to the following schema:
+``` javascript
 {
   infoBoxIsVisible: boolean,
   currentCoachMarkIndex: integer,
@@ -77,7 +65,6 @@ The Tour Guide configuration conforms to the following schema:
       coachMarks: [
         {
           targetSelector: string,
-          title: string,
           description: string,
           anchorPostition: "top" | "bottom" | "left" | "right",
           align: "start" | "center" | "end",
@@ -173,7 +160,7 @@ You can also trigger a tour by using several javaScript calls. First set the cur
 
 A tour will be triggered automatically on page load if the following lines are added to your Tour Guide config:
 
-```
+``` javascript
 infoBoxIsVisible: true,
 currentTourIndex: tourId,
 ```

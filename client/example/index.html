@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Dyno Example</title>
+  <link rel="stylesheet" href="main.css">
+  <script type="text/javascript" src="./project-dyno.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    const startTour = () => {
+      const tourConfig = {
+        infoBoxIsVisible: true,
+        currentCoachMarkIndex: 0,
+        currentTourIndex: 0,
+        tours: [
+          {
+            title: "Example Tour",
+            coachMarks: [
+              {
+                description: "Example Coach Mark that will hightlight the first H1 element.",
+                dimBackground: true,
+                targetPosition: "top",
+                anchorPostition: "bottom",
+                align: "center",
+              }
+            ]
+          },
+        ]
+      }
+
+      // Creates a new instance of the TourGuide class.
+      window.tourRunner = new TourGuide(tourConfig)
+    }
+  </script>
+  <h1>Project Dyno Example</h1>
+  <p>Suspendisse potenti. Praesent finibus molestie tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Nulla vel augue et neque molestie consectetur. Aliquam convallis eros ut mattis dictum. Morbi vehicula bibendum
+    neque, ut pharetra est blandit a. Sed euismod, sapien quis blandit imperdiet, enim eros bibendum ex, eu pharetra
+    enim nisi a nibh. Maecenas non faucibus leo, non mollis turpis. Sed mattis erat eu arcu cursus lobortis. Donec sit
+    amet mauris tortor. Suspendisse maximus condimentum dapibus. Donec dignissim tellus id neque pharetra tincidunt.
+    Quisque eget pharetra ante, at sollicitudin sem. Vestibulum rutrum enim id purus sollicitudin sodales. Fusce
+    fermentum elementum porttitor. Quisque mollis pellentesque sem, tristique consectetur velit fringilla sed.</p>
+  <p>Nulla eget sagittis urna. Nulla sed ligula sollicitudin, consectetur sapien eu, placerat augue. Sed arcu velit,
+    tempus vel urna id, consectetur malesuada elit. Suspendisse sit amet nibh sed ante pellentesque pulvinar. Curabitur
+    bibendum porttitor gravida. Aliquam erat volutpat. Donec dignissim felis purus, non auctor dolor tristique in.</p>
+  <button onclick="startTour()">Start Tour</button>
+</body>
+
+</html>

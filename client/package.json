@@ -1,6 +1,6 @@
 {
   "name": "tour_guide",
-  "version": "1.0.0-alpha.2",
+  "version": "0.5.1",
   "description": "Phase 1 of checkmarks project",
   "main": "src/app.js",
   "scripts": {
@@ -37,5 +37,6 @@
     "query-string": "^6.0.0",
     "redux": "^3.7.2",
     "smoothscroll-polyfill": "^0.4.3"
-  }
+  },
+  "license": "Apache-2.0"
 }
