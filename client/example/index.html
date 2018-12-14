@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project Dyno Example</title>
   <link rel="stylesheet" href="main.css">
-  <script type="text/javascript" src="./project-dyno.js"></script>
+  <script type="text/javascript" src="project-dyno.js"></script>
 </head>
 
 <body>
@@ -24,9 +24,32 @@
                 description: "Example Coach Mark that will hightlight the first H1 element.",
                 dimBackground: true,
                 targetPosition: "top",
-                anchorPostition: "bottom",
+                navButtons: ['next'],
+              },
+              {
+                description: "Example Coach Mark that will hightlight the first H1 element.",
+                dimBackground: true,
+                targetSelector: "h1",
+                anchorPosition: "bottom",
                 align: "center",
-              }
+                navButtons: ['next'],
+              },
+              {
+                description: "Example Coach Mark that will hightlight the first H1 element.",
+                dimBackground: true,
+                targetSelector: "p:nth-of-type(1)",
+                anchorPosition: "bottom",
+                align: "center",
+                navButtons: ['next'],
+              },
+              {
+                description: "Example Coach Mark that will hightlight the first H1 element.",
+                dimBackground: true,
+                targetSelector: "p:nth-of-type(2)",
+                anchorPosition: "top",
+                align: "center",
+                navButtons: ['next'],
+              },
             ]
           },
         ]
