@@ -1,6 +1,6 @@
 # Introduction
 
-The Project Dyno Client is responsible for managing coach marks and tours on a web page or web app.  It is designed to be lightweight and highly configurable.  Additionally, there are a variety of options for adding Project Dyno to your project.
+The Project Dyno Client is responsible for managing coach marks and tours on a web app.  It is designed to be lightweight and flexible.
 
 # Example Project
 
@@ -21,7 +21,7 @@ First, add the project-dyno.js script to your project.  This file is located in 
 
 Once it has been loaded, project-dyno.js will add the `TourGuide` class to the window/global namespace.  The `TourGuide` class is used to create and run tours.  The following code runs a simple example tour:
 
-``` javascript
+``` js
 // Defines a tour configuration object.
 // Tour configuration will be discussed in depth in the "Creating and Configuring a Tour" section of this document.
 const tourConfig = {
@@ -46,15 +46,18 @@ const tourConfig = {
 // Creates a new instance of the TourGuide class.
 const tourRunner = new TourGuide(tourConfig)
 ```
+## URL Queries
+
+You can trigger a tour by adding the following query string to the end of a URL `?showTour=tourId` where tourId is the index of the tour you wish to display.
 
 # Creating and Configuring a Tour
 
-When a new `TourGuide` instance is created, it is passed a tour configuration object as a parameter.  The tour configuration defines
+When a new `TourGuide` instance is created, it is passed a tour configuration object as a parameter.  The tour configuration object is used to define the tours that the `TourGudie` instance will manage.
 
 ## Configuration Schema
 
 The Project Dyno configuration object conforms to the following schema:
-``` javascript
+``` js
 {
   infoBoxIsVisible: boolean,
   currentCoachMarkIndex: integer,
@@ -89,8 +92,8 @@ The Project Dyno configuration object conforms to the following schema:
 
 | Property | Type | Rquired | Default | Description |
 | --- | --- | --- | --- | --- |
-| infoBoxIsVisible | boolean | no | false | Determines if Tour Guide is visible or not. |
-| currentCoachMarkIndex | integer | no | 0 | The index of the currently displayed coach mark / tour step.|
+| infoBoxIsVisible | boolean | no | false | Determines if the current coach mark is visialbe or not. |
+| currentCoachMarkIndex | integer | no | 0 | The index of the currently displayed coach mark.|
 | currentTourIndex | integer | no | 0 | The index of the currently displayed tour.|
 | tours | array | yes | - | An array containing one or more tour objects. |
 
@@ -138,34 +141,7 @@ Tour Guide uses and extended version of CSS Selectors.  Tour Guide adds several 
 | --- | --- | --- |
 & | (css selector)&(child css selector) | Used for selecting elements with certain child elements. For example, `.some-class&p` would select an element with the `.some-class` class that has a `<p>` child element.
 \| | (css selector)\|(fallback css selector) | Used for setting up fallbacks if a selector doesn't match an element on the page.  For example, `.might-not-exist\|.will-exist` would select an element with the class of `.will-exist` if there is no element that has the class `.might-not-exist`.
-@ | (css selector)@(element attribute)=(regex) | Used for selecting elements that have elements with certian attribues.  For example, `p@innerText=^example text$` would select a `<p>` element that has the text `example text`.
-
-## Authoring Tool
-
-In the coming months a chrome extension will be available that will allow tour authors to interactivly create and edit tours.  This tool will export all the necessary configuration.  More information will follow when we are close to release.
-
-# Triggering Tours
-
-Once Tour Guide has been configured and deployed to your apllication, you can trigger a tour in one of several ways.  They can be triggered through the use of URL Queries, javaScript calls, or you can configure a tour to run on page load.
-
-## URL Queries
-
-You can trigger a tour by adding the following query string to the end of a URL `?showTour=tourId` where tourId is the index of the tour you wish to display.
-
-## JavaScript
-
-You can also trigger a tour by using several javaScript calls. First set the current tour `tourGuide.setCurrentTour(tourId)` where tourId is the index of the tour you wish to display.  Then dispaly Tour Guide `tourGuide.showTourGuide()`.
-
-## On Page Load
-
-A tour will be triggered automatically on page load if the following lines are added to your Tour Guide config:
-
-``` javascript
-infoBoxIsVisible: true,
-currentTourIndex: tourId,
-```
-
-Where tourId is the index of the tour you wish to display.
+@ | (css selector)@(element attribute)=(regex) | Used for selecting elements that have elements with certian attribues.  For example, `p&@innerText=^example text$` would select a `<p>` element that has the text `example text`.
 
 # Callbacks
 
@@ -191,38 +167,7 @@ tourGuide.addCallback('TOUR_FINISHED', () => {
 
 # Application Structure
 
-## Key Components
-
-### Constructor
-
-When Tour Guide is instantiated the following takes place:
-
-1. The app store is created.
-2. A renderer is instaniated.
-3. The renderer creates the DOM elements Tour Guide will need to function.
-4. Tour Guide is ready for a tour to be triggered.
-
-### Store
-
-The app store is a redux store.  The store's initial state is derived from the configuration passed to Tour Guide when it is instantiated.
-
-### Renderer
-
-When the renderer is instantiated the following DOM elements are created:
-
-1. A div element is created before the end of the document's body.  The coachmarks are rendered as children of this div.
-2. A style tag is created before the end of the document's head.  Dynamic styles are rendered as children of this style tag.
-3. Another style tag is create before the of the document's head.  This tag is for static styles that will not be updated.
-
-On instantiation, the renderer also subscribes to store.  When the state in the store changes the renderer is responsible for creating the neccessary attributes/properties that will be passed to the view components and style components.  When the state changes there are two render cycles that take place.  The first updates the tour guide elements that are descendents of the document's body.  The second updates the style tags responsible for coach mark placement, animations, etc.
-
-### Action Dispatchers
-
-When an action is dispatched it triggers an update to the application's store and in turn the Tour Guide UI gets rerendered.  Actions are typically dispatched as a result of user interaction.  For example, a user clicking on the "next" button will result in an action getting dispatched that advances the tour to the next coach mark.  Actions can also be triggered through the Tour Guide API.  A complete list of actions available through the API is available in the <a href="#actions"> actions section </a> of the API documentation.
-
-## Application Lifecycle Diagram
-
-<img type="image/svg+xml" src="./docs/imgs/lifecycle.svg" width="500">
+TODO talk about mithril and redux
 
 # Developing For Tour Guide
 
@@ -230,31 +175,8 @@ To get started with developing for Tour Guide, open a terminal and execute the f
 
 1.  Make sure Node.js version 8.9.4 or newer is installed.  To check the version of Node.js you have installed run `node -v`.  For instructions on how to insall Node.js visit <a href='https://nodejs.org/'>https://nodejs.org/</a>
 2.  Clone this git repo and go to the root folder of the project.
-3.  Install the project dependencies by running `npm install`.
+3.  Install the project dependencies by running `yarn install`.
 4.  Once the dependencies have been installed, launch a development server by running `npm start`.  This will run webpack and open a development sandbox at <a href='http://localhost:8080/'>http://localhost:8080/</a>
-
-## Development Sandbox
-
-Once you have completed the four installation steps, you should be looking at a browser window with the development sandbox loaded.  It is useful as a test bed for developing Tour Guide.  By default, no tour or coachmarks will be displayed.  Currently, you can execute a tour in one of two ways:
-
-1. **By using URL parameters:**  If the following query string is present, a tour will be triggered `?showTour=0`.  ShowTour needs to passed a valid tour index.  The development sandbox has two tours so valid URLs are <a href='http://localhost:8080/?showTour=0'>http://localhost:8080/?showTour=0</a> and <a href='http://localhost:8080/?showTour=1'>http://localhost:8080/?showTour=1</a>.
-2. **By using JavaScript calls:**  In your browsers console type `tourGuide.actions.showTourGuide()`.  By default, the first tour will be shown.  To switch tours, run the following command `tourGuide.actions.setCurrentTour(1)`.  For more information on the Tour Guide SDK and other 'TourGuide.actions' functions visit <a href='#api'> the api section</a> of this documentation.
-
-## Editing Tour Guide Code
-
-Edit the project code in the editor of your choice.  Once changes to the code have been saved, webpack will compile/bundle the changes.  If there are no errors in the code, the development server will reload the sandbox and the changed code will immediately be available.
-
-Once you have changed the code, please do the following before creating a pull request:
-
-1. Run ES Lint.  From a terminal in the project root run `npm run lint`.  Address any errors listed.
-2. Run unit tests.  **Ok a test framework is not setup yet.  The project is still very young.  Expect either Jest or Mocha to be up and running in the next sprint.  In the future, unit tests will be essential to our development process.**
-
-## Dependencies
-
-Because Tour Guide was designed to be deployed through the DTM, its dependencies can't be a part of the main application bundle.  Because of this, it is important to keep the file size of the Tour Guide library as small as possible.  So, the number of dependencies used by Tour Guide has been kept to a minimum.  With that said, there are two core dependencies that Tour Guide relies on heavily:
-
-- **<a href='https://mithril.js.org'>Mithril</a>** - A lean UI framework very similar to React.  It was used instead of React primarily because it has small file size of only 8kb while still being a very capable framework.
-- **<a href='https://redux.js.org'>Redux</a>** - Redux has a tiny file size of only 2kb.  It is a state container used for building javaScript applications that adhere to the <a href='https://redux.js.org/basics/data-flow'>unidirectional data flow</a> design pattern.
 
 ## Feedback, Questions, and Concerns
 
