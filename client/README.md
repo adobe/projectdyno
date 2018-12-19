@@ -165,10 +165,7 @@ tourGuide.addCallback('TOUR_FINISHED', () => {
 })
 ```
 
-# Application Structure
-
-TODO talk about mithril and redux
-
+TODO move to contributing.md
 # Developing For Tour Guide
 
 To get started with developing for Tour Guide, open a terminal and execute the following commands:
