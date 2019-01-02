@@ -1,6 +1,6 @@
 # Introduction
 
-The Project Dyno Client is responsible for managing coach marks and tours on a web app.  It is designed to be lightweight and flexible.
+The Project Dyno Client is responsible for runing tours on a web app.  It is designed to be lightweight and flexible.  Tours are run by pasing a JSON object that defines a tour to the Project Dyno Client.
 
 # Example Project
 
@@ -19,13 +19,13 @@ First, add the project-dyno.js script to your project.  This file is located in 
 
 # Running a Tour
 
-Once it has been loaded, project-dyno.js will add the `TourGuide` class to the window/global namespace.  The `TourGuide` class is used to create and run tours.  The following code runs a simple example tour:
+the project-dyno.js script will add the `TourGuide` class to the window/global namespace.  The `TourGuide` class is used to create and run tours.  The following code creates a TourGuide instance:
 
 ``` js
 // Defines a tour configuration object.
 // Tour configuration will be discussed in depth in the "Creating and Configuring a Tour" section of this document.
 const tourConfig = {
-  infoBoxIsVisible: true,
+  infoBoxIsVisible: false,
   currentCoachMarkIndex: 0,
   currentTourIndex: 0,
   tours: [
@@ -46,11 +46,27 @@ const tourConfig = {
 // Creates a new instance of the TourGuide class.
 const tourRunner = new TourGuide(tourConfig)
 ```
+
+Once a TourGuide instance has been created, the tour needs to be run before it will be visible to the user.  There are several ways to run a tour.
+
 ## URL Queries
 
-You can trigger a tour by adding the following query string to the end of a URL `?showTour=tourId` where tourId is the index of the tour you wish to display.
+You can run a tour by adding the following query string to the end of a URL `?showTour=tourId` where tourId is the index of the tour you wish to display.
 
-# Creating and Configuring a Tour
+## JavaScript
+
+A tour can be run by using the following JavaScript commands:
+
+``` js
+// tourRunner is an instance of TourGuide
+tourRunner.showTourGuide()
+```
+
+## Through the Tour Configuration
+
+If the `infoBoxIsVisible` attribute on the tour configuration object is set to true.  The tour will start as soon as the TourGuide object is instantiated.
+
+# Tour Configuration
 
 When a new `TourGuide` instance is created, it is passed a tour configuration object as a parameter.  The tour configuration object is used to define the tours that the `TourGudie` instance will manage.
 
@@ -171,9 +187,10 @@ TODO move to contributing.md
 To get started with developing for Tour Guide, open a terminal and execute the following commands:
 
 1.  Make sure Node.js version 8.9.4 or newer is installed.  To check the version of Node.js you have installed run `node -v`.  For instructions on how to insall Node.js visit <a href='https://nodejs.org/'>https://nodejs.org/</a>
-2.  Clone this git repo and go to the root folder of the project.
-3.  Install the project dependencies by running `yarn install`.
-4.  Once the dependencies have been installed, launch a development server by running `npm start`.  This will run webpack and open a development sandbox at <a href='http://localhost:8080/'>http://localhost:8080/</a>
+2.  Make sure that yarn is installed.  Yarn is the recommended package manager for Project Dyno.  Run `yarn` and ensure that is runs correctly.  For information on how to install yarn visit <a href='https://yarnpkg.com/en/'>https://yarnpkg.com/en/</a>
+3.  Clone this git repo and go to the root folder of the project.
+4.  Install the project dependencies by running `yarn install`.
+5.  Once the dependencies have been installed, launch a development server by running `yarn start`.  This will run webpack and open a development sandbox at <a href='http://localhost:8080/'>http://localhost:8080/</a>
 
 ## Feedback, Questions, and Concerns
 
@@ -181,22 +198,29 @@ If you have any feedback or are having problems getting the project up and runni
 
 # API
 
+<a name="module_actions"></a>
+
 ## actions
 
 * [actions](#module_actions)
     * _static_
         * [.addCoachMark](#module_actions.addCoachMark) ⇒ <code>Action</code>
+        * [.addTour](#module_actions.addTour) ⇒ <code>Action</code>
         * [.nextCoachMark](#module_actions.nextCoachMark) ⇒ <code>Action</code>
         * [.prevCoachMark](#module_actions.prevCoachMark) ⇒ <code>Action</code>
         * [.setCurrentCoachMark](#module_actions.setCurrentCoachMark) ⇒ <code>Action</code>
         * [.nextTour](#module_actions.nextTour) ⇒ <code>Action</code>
         * [.prevTour](#module_actions.prevTour) ⇒ <code>Action</code>
         * [.setCurrentTour](#module_actions.setCurrentTour) ⇒ <code>Action</code>
+        * [.removeCoachMark](#module_actions.removeCoachMark) ⇒ <code>Action</code>
+        * [.removeTour](#module_actions.removeTour) ⇒ <code>Action</code>
         * [.hideTourGuide](#module_actions.hideTourGuide) ⇒ <code>Action</code>
         * [.showTourGuide](#module_actions.showTourGuide) ⇒ <code>Action</code>
-        * [.hideMore](#module_actions.hideMore) ⇒ <code>Action</code>
-        * [.showMore](#module_actions.showMore) ⇒ <code>Action</code>
-        * [.modifyCoachMarkAttributes](#module_actions.modifyCoachMarkAttributes)
+        * [.removeCoachMarkAttribute](#module_actions.removeCoachMarkAttribute) ⇒ <code>Action</code>
+        * [.modifyCoachMarkAttributes](#module_actions.modifyCoachMarkAttributes) ⇒ <code>Action</code>
+        * [.modifyTourAttributes](#module_actions.modifyTourAttributes) ⇒ <code>Action</code>
+        * [.setState](#module_actions.setState) ⇒ <code>Action</code>
+        * [.tourFinished](#module_actions.tourFinished) ⇒ <code>Action</code>
     * _inner_
         * [~CoachMarkMedia](#module_actions..CoachMarkMedia) : <code>Object</code>
         * [~CoachMarkProperties](#module_actions..CoachMarkProperties) : <code>Object</code>
@@ -215,6 +239,17 @@ The new coach mark will be appeneded to the end of the tour.
 | --- | --- | --- |
 | properties | <code>CoachMarkProperties</code> | An object that defines the coach mark properties. |
 | [tourId] | <code>number</code> | An integer, the index of the tour that the coach mark will be added to. |
+
+<a name="module_actions.addTour"></a>
+
+### actions.addTour ⇒ <code>Action</code>
+This actions adds a to tour.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributes | <code>\*</code> | The new tour's attributes. |
 
 <a name="module_actions.nextCoachMark"></a>
 
@@ -242,7 +277,7 @@ The provided coach mark id must be valid or an error will be thrown.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>Number</code> | An integer specifying the index of the coach mark that will be made current. |
+| id | <code>number</code> | An integer specifying the index of the coach mark that will be made current. |
 
 <a name="module_actions.nextTour"></a>
 
@@ -271,6 +306,29 @@ The provided tour id must be valid or an error will be thrown.
 | --- | --- | --- |
 | id | <code>number</code> | An integer specifying the index of the tour that will be made active. |
 
+<a name="module_actions.removeCoachMark"></a>
+
+### actions.removeCoachMark ⇒ <code>Action</code>
+This action removes the specified coach mark from the specified tour.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| coachMarkId | <code>number</code> | An integer specifying the index of the coach mark to be removed. If not provided, the current coach mark will be used. |
+| tourId | <code>number</code> | An integer specifying the index of the tour containing the coach mark to be removed.  If not provided, the current tour will be used. |
+
+<a name="module_actions.removeTour"></a>
+
+### actions.removeTour ⇒ <code>Action</code>
+This action removes the specified tour.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tourId | <code>integer</code> | The index of the tour to be removed. If not provided, the current tour will be removed. |
+
 <a name="module_actions.hideTourGuide"></a>
 
 ### actions.hideTourGuide ⇒ <code>Action</code>
@@ -285,33 +343,68 @@ This action shows the tour guide UI.
 If the UI is already visible, nothing will happen.
 
 **Kind**: static constant of [<code>actions</code>](#module_actions)
-<a name="module_actions.hideMore"></a>
+<a name="module_actions.removeCoachMarkAttribute"></a>
 
-### actions.hideMore ⇒ <code>Action</code>
-This action hides the tour guide navigation menu.
-If the menu is already hidden, nothing wil happen.
-
-**Kind**: static constant of [<code>actions</code>](#module_actions)
-<a name="module_actions.showMore"></a>
-
-### actions.showMore ⇒ <code>Action</code>
-This action shows the tour guide navigation menu.
-If the menu is already visible, nothing will happen.
+### actions.removeCoachMarkAttribute ⇒ <code>Action</code>
+This action removes an attribute from a coach mark.  If a required attribute is removed,
+and error will be thrown.
 
 **Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributes | <code>CoachMarkProperties</code> | The attribute to be removed. |
+| coachmarkId | <code>number</code> | An integer specifying the index of the coachmark to be altered. If not provided, the current coach mark will be used. |
+| tourId | <code>number</code> | An integer specifying the index of the tour containing the coach mark that will be altered. If not provided, the current tour will be used. |
+
 <a name="module_actions.modifyCoachMarkAttributes"></a>
 
-### actions.modifyCoachMarkAttributes
+### actions.modifyCoachMarkAttributes ⇒ <code>Action</code>
 This action modifies the attributes of an exisiting coach mark.
 
 **Kind**: static constant of [<code>actions</code>](#module_actions)
 
 | Param | Type | Description |
 | --- | --- | --- |
-| attributes | <code>CoachMarkProperties</code> | The attributes to be altered. |
+| attributes | <code>CoachMarkProperties</code> | An object containing the attributes to be altered. |
 | coachmarkId | <code>number</code> | An integer specifying the index of the coachmark to be altered. If not provided, the current coach mark will be used. |
-| tourId | <code>\*</code> | An integer specifying the index of the tour containing the coach mark that will be altered. If not provided, the current tour will be used. |
+| tourId | <code>number</code> | An integer specifying the index of the tour containing the coach mark that will be altered. If not provided, the current tour will be used. |
 
+<a name="module_actions.modifyTourAttributes"></a>
+
+### actions.modifyTourAttributes ⇒ <code>Action</code>
+This action modifies the attributes of an existing tour.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| attributes | <code>\*</code> | An object containing the attributes to be altered. |
+| tourId | <code>integer</code> | An integer specifying the index of the tour to be altered. |
+
+<a name="module_actions.setState"></a>
+
+### actions.setState ⇒ <code>Action</code>
+This action is used to quickly replace large sections of app state.
+For example it can be used to replace the old batch of tours with a new one.
+The submitted state is a plain javascript with the same shape/schema at the app state.
+The submitted state is shallowly merged with the old state.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | <code>\*</code> | The apps state |
+
+<a name="module_actions.tourFinished"></a>
+
+### actions.tourFinished ⇒ <code>Action</code>
+Behaves the same as the hideTourGuide action.
+It is dispatched when the user clicks the 'Finish' button.
+This action is used instead of hideTourGuide so that a callback can
+be used for when a user completes a tour.
+
+**Kind**: static constant of [<code>actions</code>](#module_actions)
 <a name="module_actions..CoachMarkMedia"></a>
 
 ### actions~CoachMarkMedia : <code>Object</code>
@@ -334,6 +427,7 @@ A plain javaScript object that specificies the properties of a coach mark.
 
 | Name | Type | Description |
 | --- | --- | --- |
+| targetSelector | <code>string</code> \| <code>undefined</code> | A css selector for the page element that the coach mark will target. |
 | title | <code>string</code> \| <code>undefined</code> | The coach mark's title. |
 | description | <code>string</code> \| <code>undefined</code> | The coach mark's description. |
 | anchorPosition | <code>string</code> \| <code>undefined</code> | The coach mark's anchor position. |
