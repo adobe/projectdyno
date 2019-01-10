@@ -1,15 +1,19 @@
 # Introduction
 
-The Project Dyno Authoring tool is an electron app that is used to create and configure Tours.  It is designed to be user friendly and make it simple for non-engineers to create tours.
+The Project Dyno Authoring Tool is an electron app that is used to create and configure Tours.  It is designed to be user friendly and make it simple for non-engineers to create tours.
 
 # Workflow
 
-- A user opens a page they want to work on in the authoring tool.
+When using the Project Dyno Authoring Tool a user follows this basic workflow:
+
+- A user opens a page where they want to create or edit a tour.
 - If there is a tour on the page already, the user can edit that tour.
 - If there isn't a tour on the page, the user can create a new one.
 - Once the user has completed the tour, they can export the tour from the authoring tool and deploy it to their web app.
 
-# Appliction Architecture
+# Application Architecture
+
+The Project Dyno Authoring Tool is an [Electron](http://electronjs.org) app that utilizes [react](http://reactjs.org) and [redux](http://redux.js.org).  It was written in [TypeScript](https://www.typescriptlang.org/).
 
 - A target page is loaded into a webview.
 - If needed, the tour guide client is injected into the target page.
@@ -23,8 +27,9 @@ The Project Dyno Authoring tool is an electron app that is used to create and co
 
 # Build Process
 
-- Getting the latest client
--
+The authoring tool is built using [electron builder](https://www.electron.build/).  Electron builder can produce builds for both Windows and MacOS.  Currently, a windows build needs to be built on a windows machine and a Mac OS build needs to be built on a mac. The build scripts are located in the `authoring/scripts/` folder and are run using the `yarn build` command.
+
+> Note: Before initiating the build process, make sure the latest version of the client is available.
 
 # Exported ZIP file.
 
