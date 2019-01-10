@@ -183,7 +183,7 @@ class Renderer {
       }
     }
 
-    const targetBounds = this.targetElement.getBoundingClientRect()
+    const targetBounds = this.targetElement ? this.targetElement.getBoundingClientRect() : null
     const attrs = {
       actions: this.actions,
       coachMark,
@@ -198,7 +198,7 @@ class Renderer {
       willAnimate,
       theme,
     }
-    const isTargetOffscreen = isOffscreen(targetBounds)
+    const isTargetOffscreen = targetBounds ? isOffscreen(targetBounds) : null
 
     // scroll target element into view if needed
     if (isTargetOffscreen && infoBoxIsVisible && !this.isScrolling) {
@@ -231,7 +231,9 @@ class Renderer {
     }
 
     // add event listenders to the current targetElement
-    this.targetElement.addEventListener('transitionend', this.render)
+    if (this.targetElement) {
+      this.targetElement.addEventListener('transitionend', this.render)
+    }
 
     // perform the render/rerender
     m.render(this.tourGuideElement, m(TourGuide, attrs))

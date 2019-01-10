@@ -115,11 +115,16 @@ const calcCoachmarkPositions = (data) => {
   }
   const progressOnDomEventTarget = progressOnDomEvent ? progressOnDomEvent.targetSelector : null
   const progressOnDomEventElement = document.querySelector(progressOnDomEventTarget)
-  const targetBounds = targetElement.getBoundingClientRect()
+  const targetBounds = targetElement ? targetElement.getBoundingClientRect() : null
   const progressOnDomEventTargetBounds = progressOnDomEventTarget ?
     progressOnDomEventElement.getBoundingClientRect()
     : null
-  const shimBounds = {
+  const shimBounds = targetPosition ? {
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  } : {
     left: Math.round(targetBounds.left - SHIM_MARGIN),
     top: Math.round(targetBounds.top - SHIM_MARGIN),
     width: Math.round(targetBounds.width + SHIM_MARGIN + SHIM_MARGIN),
@@ -175,13 +180,13 @@ const TourGuideStyles = {
       actions,
       coachMark,
       coachMarkPostionIsAdjusted,
-      targetElement,
+      // targetElement,
       theme,
       willAnimate,
     } = attrs
 
     // abort the render process if the necessary elements are unavailable
-    if (!infoBoxElement || !targetElement) {
+    if (!infoBoxElement) {
       return null
     }
 

@@ -3,12 +3,12 @@ const path = require('path')
 module.exports = {
   entry: './src/app.js',
   output: {
-    filename: 'tour-guide.js',
+    filename: 'project-dyno.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     port: 8080,
-    contentBase: './dist',
+    contentBase: './example',
     watchContentBase: true,
     hot: false,
   },

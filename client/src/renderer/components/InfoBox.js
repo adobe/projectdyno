@@ -37,11 +37,19 @@ const InfoBox = {
     const {
       hideTourGuide,
     } = actions
-    const isTargetElementValid = validateTargetElement(targetElement)
+
     const rootClass = theme === BLUE_THEME ? `${INFOBOX_WRAPPER} ${BLUE_THEME_WRAPPER}` : INFOBOX_WRAPPER
 
-    if (!infoBoxIsVisible || !isTargetElementValid) {
+    if (!infoBoxIsVisible) {
       return null
+    }
+
+    if (targetElement) {
+      const isTargetElementValid = validateTargetElement(targetElement)
+
+      if (!isTargetElementValid) {
+        return null
+      }
     }
 
     return m(rootClass, [
