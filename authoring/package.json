@@ -8,7 +8,7 @@
   },
   "main": "./packaged/index.js",
   "description": "A tool for authoring guided product tours.",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "build": "./scripts/build.js",
