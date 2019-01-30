@@ -34,7 +34,7 @@ const InfoBoxStaticStyles = {
       display: flex;
       flex-direction: column;
       color: ${TEXT};
-      width: ${INFOBOX_WIDTH}px ;
+      width: ${INFOBOX_WIDTH}px;
       overflow: visible;
       transform: none;
       text-transform: none;
@@ -78,7 +78,7 @@ const InfoBoxStaticStyles = {
       height: 32px;
       padding: 0 14px;
       font-family: inherit;
-      font-size: 15px;c
+      font-size: 15px;
       font-weight: bold;
       text-decoration: none;
       cursor: pointer;

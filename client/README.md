@@ -157,7 +157,7 @@ Tour Guide uses and extended version of CSS Selectors.  Tour Guide adds several 
 | --- | --- | --- |
 & | (css selector)&(child css selector) | Used for selecting elements with certain child elements. For example, `.some-class&p` would select an element with the `.some-class` class that has a `<p>` child element.
 \| | (css selector)\|(fallback css selector) | Used for setting up fallbacks if a selector doesn't match an element on the page.  For example, `.might-not-exist\|.will-exist` would select an element with the class of `.will-exist` if there is no element that has the class `.might-not-exist`.
-@ | (css selector)@(element attribute)=(regex) | Used for selecting elements that have elements with certian attribues.  For example, `p&@innerText=^example text$` would select a `<p>` element that has the text `example text`.
+@ | (css selector)@(element attribute)=(regex) | Used for selecting elements that have elements with certian attributes.  For example, `p&@innerText=^example text$` would select a `<p>` element that has the text `example text`.
 
 # Callbacks
 
@@ -230,7 +230,7 @@ If you have any feedback or are having problems getting the project up and runni
 
 ### actions.addCoachMark ⇒ <code>Action</code>
 This action adds a new coach mark to the tour.
-The new coach mark will be appeneded to the end of the tour.
+The new coach mark will be appended to the end of the tour.
 
 **Kind**: static constant of [<code>actions</code>](#module_actions)
 **Returns**: <code>Action</code> - - The addCoachMark action that was just crated.

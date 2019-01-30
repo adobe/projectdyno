@@ -33,7 +33,7 @@ The authoring tool is built using [electron builder](https://www.electron.build/
 
 # Exported ZIP file.
 
-The authoring tool's export feature creaete's a zip file the following contents:
+The authoring tool's export feature creates a zip file the following contents:
 
 ```
 ├── README.md

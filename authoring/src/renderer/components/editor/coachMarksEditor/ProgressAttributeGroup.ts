@@ -97,7 +97,6 @@ class ProgressAttributeGroup extends Component<IAttributeGroupEditorProps> {
           },
           'Buttons',
         ),
-        /*
         e(
           CheckBox,
           {
@@ -114,7 +113,6 @@ class ProgressAttributeGroup extends Component<IAttributeGroupEditorProps> {
             value: navButtons.includes(NavButtonTypes.back),
           },
         ),
-        */
         e(
           CheckBox,
           {

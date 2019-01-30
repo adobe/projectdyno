@@ -14,11 +14,15 @@ const NavigationButtons = {
       prevCoachMark,
       tourFinished,
     } = actions
-    const isFirst = currentCoachMarkIndex === 0
+
+    // const isFirst = currentCoachMarkIndex === 0
     const isLast = (currentCoachMarkIndex + 1) === coachMarkCount
+    // const noNav = onlyOne || navButtons.length === 0
+
     const onlyOne = coachMarkCount === 1
-    const noNav = onlyOne || navButtons.length === 0
     const renderedButtons = []
+    const hasBack = navButtons.find(button => button === 'back')
+    const hasNext = navButtons.find(button => button === 'next')
 
     if (!onlyOne) {
       renderedButtons.push(m(
@@ -27,6 +31,37 @@ const NavigationButtons = {
       ))
     }
 
+    if (hasBack) {
+      renderedButtons.push(m(
+        `button.${(hasNext || isLast) ? INFOBOX_BUTTON_SECONDARY : INFOBOX_BUTTON_PRIMARY}`,
+        {
+          onclick: prevCoachMark,
+        },
+        'Back',
+      ))
+    }
+
+    if (hasNext && !isLast) {
+      renderedButtons.push(m(
+        `button.${INFOBOX_BUTTON_PRIMARY}`,
+        {
+          onclick: nextCoachMark,
+        },
+        'Next',
+      ))
+    }
+
+    if (isLast) {
+      renderedButtons.push(m(
+        `button.${INFOBOX_BUTTON_PRIMARY}`,
+        {
+          onclick: tourFinished,
+        },
+        onlyOne ? 'Ok' : 'Done',
+      ))
+    }
+
+    /*
     if (!noNav) {
       if (!isFirst) {
         renderedButtons.push(m(
@@ -58,6 +93,7 @@ const NavigationButtons = {
         onlyOne ? 'Ok' : 'Done',
       ))
     }
+    */
 
     return renderedButtons
   },
