@@ -230,6 +230,7 @@ const TourGuideStyles = {
         transition:
           left ${animationSpeed},
           top ${animationSpeed};
+        z-index: 10000000;
       }
 
       ${INFOBOX_IMAGE_WRAPPER} {
